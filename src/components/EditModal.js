@@ -1,3 +1,4 @@
+import { FontAwesome } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   View,
@@ -8,6 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { THEME } from "../screens/theme";
+import { AppButton } from "./ui/AppButton";
 
 export const EditModal = ({ isVisible, closeModal, value, onSave }) => {
   const [title, setTitle] = useState(value);
@@ -38,16 +40,17 @@ export const EditModal = ({ isVisible, closeModal, value, onSave }) => {
           onChangeText={setTitle}
         />
         <View style={styles.buttons}>
-          <Button
+          <AppButton color={THEME.CANCEL_BUTTON_COLOR} onPress={closeModal}>
+            <FontAwesome name="arrow-left" />
+          </AppButton>
+          <AppButton color={THEME.SAVE_BUTTON_COLOR} onPress={saveHandler}>
+            <FontAwesome name="check" />
+          </AppButton>
+          {/* <Button
             title="Cancel"
             color={THEME.CANCEL_BUTTON_COLOR}
             onPress={closeModal}
-          />
-          <Button
-            title="Save"
-            color={THEME.SAVE_BUTTON_COLOR}
-            onPress={saveHandler}
-          />
+          /> */}
         </View>
       </View>
     </Modal>

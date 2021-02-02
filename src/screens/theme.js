@@ -7,4 +7,5 @@ export const THEME = {
   SAVE_BUTTON_COLOR: "#2e7d32",
   REMOVE_BUTTON_COLOR: "#c62828",
   EDIT_BUTTON_COLOR: "#607d8b",
+  TEXT_BUTTON_COLOR: "#fff",
 };
