@@ -42,5 +42,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderBottomWidth: 2,
     borderBottomColor: THEME.INPUT_BOTTOM_BORDER_COLOR,
+    fontSize: 20,
+    fontFamily: "roboto-regular",
   },
 });

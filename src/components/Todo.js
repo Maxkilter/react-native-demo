@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { THEME } from "../screens/theme";
+import { AppText } from "./ui/AppText";
 
 export const Todo = ({ todo, onRemove, selectTodo }) => {
   const longPressHandler = () => onRemove(todo.id);
@@ -12,7 +13,7 @@ export const Todo = ({ todo, onRemove, selectTodo }) => {
       onPress={() => selectTodo(todo)}
     >
       <View style={styles.todo}>
-        <Text style={styles.title}>{todo.title}</Text>
+        <AppText style={styles.todoText}>{todo.title}</AppText>
       </View>
     </TouchableOpacity>
   );
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
   },
-  title: {
-    fontFamily: "roboto-bold",
+  todoText: {
+    fontSize: 18,
   },
 });

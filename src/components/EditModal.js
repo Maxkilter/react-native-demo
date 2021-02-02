@@ -65,6 +65,8 @@ const styles = StyleSheet.create({
     borderBottomColor: THEME.INPUT_BOTTOM_BORDER_COLOR,
     borderBottomWidth: 2,
     width: "80%",
+    fontFamily: "roboto-bold",
+    fontSize: 22,
   },
   buttons: {
     width: "100%",
