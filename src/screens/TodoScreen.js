@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import { EditModal } from "../components/EditModal";
 import { AppCard } from "../components/ui/AppCard";
 import { AppTextBold } from "../components/ui/AppTextBold";
 import { AppButton } from "../components/ui/AppButton";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "./theme";
 
 export const TodoScreen = ({ goBack, todo, removeTodo, onSave }) => {
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   button: {
-    width: "45%",
+    // width: Dimensions.get("window").width / 3.5,
+    width: Dimensions.get("window").width > 400 ? 150 : 100,
   },
   title: {
     fontSize: 20,

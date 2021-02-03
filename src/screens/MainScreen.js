@@ -1,22 +1,39 @@
-import React from "react";
-import { StyleSheet, View, FlatList, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, FlatList, Image, Dimensions } from "react-native";
 import { Todo } from "../components/Todo";
 import { AddTodo } from "../components/AddTodo";
+import { THEME } from "./theme";
+
+const getWidth = () => {
+  return Dimensions.get("window").width - THEME.PADDING_HORIGONTAL * 2;
+};
 
 export const MainScreen = (props) => {
   const { removeTodo, todos, addTodo, selectTodo } = props;
+  const [deviceWidth, setDeviceWidth] = useState(getWidth());
+
+  useEffect(() => {
+    const update = () => setDeviceWidth(getWidth());
+    Dimensions.addEventListener("change", update);
+
+    return () => {
+      return Dimensions.removeEventListener("change", update);
+    };
+  });
 
   return (
     <View>
       <AddTodo onSubmit={addTodo} />
       {todos.length ? (
-        <FlatList
-          keyExtractor={(item) => item.id.toString()}
-          data={todos}
-          renderItem={({ item }) => (
-            <Todo todo={item} onRemove={removeTodo} selectTodo={selectTodo} />
-          )}
-        />
+        <View style={{ width: deviceWidth }}>
+          <FlatList
+            keyExtractor={(item) => item.id.toString()}
+            data={todos}
+            renderItem={({ item }) => (
+              <Todo todo={item} onRemove={removeTodo} selectTodo={selectTodo} />
+            )}
+          />
+        </View>
       ) : (
         <View style={styles.imgWrap}>
           {/* <Image

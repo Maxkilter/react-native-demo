@@ -8,4 +8,5 @@ export const THEME = {
   REMOVE_BUTTON_COLOR: "#c62828",
   EDIT_BUTTON_COLOR: "#607d8b",
   TEXT_BUTTON_COLOR: "#fff",
+  PADDING_HORIGONTAL: 30,
 };
