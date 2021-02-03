@@ -1,11 +1,19 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { THEME } from "../screens/theme";
 import { AppText } from "./ui/AppText";
 
 export const Navbar = ({ title }) => {
   return (
-    <View style={styles.navbar}>
+    <View
+      style={{
+        ...styles.navbar,
+        ...Platform.select({
+          ios: styles.navbarIos,
+          android: styles.navbarAndroid,
+        }),
+      }}
+    >
       <AppText style={styles.text}>{title}</AppText>
     </View>
   );
@@ -16,11 +24,20 @@ const styles = StyleSheet.create({
     height: 70,
     alignItems: "center",
     justifyContent: "flex-end",
-    backgroundColor: THEME.BACKGROUND_COLOR,
     paddingBottom: 10,
   },
   text: {
-    color: "white",
+    color:
+      Platform.OS === "android"
+        ? THEME.TEXT_BUTTON_COLOR
+        : THEME.BACKGROUND_COLOR,
     fontSize: 20,
+    fontFamily: "roboto-bold",
+  },
+  navbarAndroid: {
+    backgroundColor: THEME.BACKGROUND_COLOR,
+  },
+  navbarIos: {
+    borderBottomWidth: 1,
   },
 });
