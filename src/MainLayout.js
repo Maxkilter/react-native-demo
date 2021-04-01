@@ -1,13 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Navbar } from "./components/Navbar";
-import { TodoContext } from "./context/todo/todoContext";
 import { MainScreen } from "./screens/MainScreen";
 import { TodoScreen } from "./screens/TodoScreen";
 import { THEME } from "./screens/theme";
+import { ScreenContext } from "./context/screen/screenContext";
+import { TodoContext } from "./context/todo/todoContext";
 
 export const MainLayout = () => {
-  const [selectedTodo, setSelectedTodo] = useState(null);
+  // const [selectedTodo, setSelectedTodo] = useState(null);
+  const { todo, changeScreen } = useContext(ScreenContext);
+
   //   const [todos, setTodos] = useState([]);
   const { todos, updateTodo, addTodo, removeTodo } = useContext(TodoContext);
 
@@ -56,17 +59,17 @@ export const MainLayout = () => {
     <View>
       <Navbar title="Medallia" />
       <View style={styles.container}>
-        {!selectedTodo?.id ? (
+        {!todo?.id ? (
           <MainScreen
             addTodo={addTodo}
             removeTodo={removeTodo}
             todos={todos}
-            selectTodo={setSelectedTodo}
+            selectTodo={changeScreen}
           />
         ) : (
           <TodoScreen
-            goBack={setSelectedTodo}
-            todo={selectedTodo}
+            goBack={changeScreen}
+            todo={todo}
             removeTodo={removeTodo}
             onSave={updateTodo}
           />

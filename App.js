@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-import { TodoState } from "./src/context/todo/todoState";
+import { TodoState } from "./src/context/todo/TodoState";
+import { ScreenState } from "./src/context/screen/ScreenState";
 import { MainLayout } from "./src/MainLayout";
 
 const loadApplication = async () => {
@@ -25,8 +26,10 @@ export default function App() {
   }
 
   return (
-    <TodoState>
-      <MainLayout />
-    </TodoState>
+    <ScreenState>
+      <TodoState>
+        <MainLayout />
+      </TodoState>
+    </ScreenState>
   );
 }
