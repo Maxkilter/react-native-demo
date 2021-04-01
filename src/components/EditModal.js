@@ -1,13 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  Button,
-  Modal,
-  Alert,
-} from "react-native";
+import { View, StyleSheet, TextInput, Modal, Alert } from "react-native";
 import { THEME } from "../screens/theme";
 import { AppButton } from "./ui/AppButton";
 

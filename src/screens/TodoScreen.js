@@ -1,24 +1,44 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import React, { useState, useContext } from "react";
+import { StyleSheet, View, Dimensions, Alert } from "react-native";
 import { EditModal } from "../components/EditModal";
 import { AppCard } from "../components/ui/AppCard";
 import { AppTextBold } from "../components/ui/AppTextBold";
 import { AppButton } from "../components/ui/AppButton";
 import { FontAwesome } from "@expo/vector-icons";
 import { THEME } from "./theme";
+import { TodoContext } from "../context/todo/todoContext";
+import { ScreenContext } from "../context/screen/screenContext";
 
-export const TodoScreen = ({ goBack, todo, removeTodo, onSave }) => {
+export const TodoScreen = () => {
+  const { updateTodo, removeTodo } = useContext(TodoContext);
+  const { todo, changeScreen } = useContext(ScreenContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleRemoveTodo = () => {
-    removeTodo(todo.id);
-    goBack(null);
+    Alert.alert(
+      "Removing todo",
+      `Are you sure that you want to remove "${todo?.title}" todo?`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Remove",
+          style: "positive",
+          onPress: () => {
+            removeTodo(todo.id);
+            changeScreen(null);
+          },
+        },
+      ]
+    );
   };
 
   const modalToggle = () => setIsModalVisible(!isModalVisible);
 
   const saveHandler = (title) => {
-    onSave(todo.id, title);
+    updateTodo(todo.id, title);
     modalToggle();
   };
 
@@ -34,7 +54,7 @@ export const TodoScreen = ({ goBack, todo, removeTodo, onSave }) => {
       </AppCard>
       <View style={styles.btnsBox}>
         <View style={styles.button}>
-          <AppButton onPress={() => goBack(null)}>
+          <AppButton onPress={changeScreen}>
             <FontAwesome
               name="arrow-circle-left"
               size={20}
@@ -46,7 +66,6 @@ export const TodoScreen = ({ goBack, todo, removeTodo, onSave }) => {
           <AppButton
             onPress={handleRemoveTodo}
             color={THEME.REMOVE_BUTTON_COLOR}
-            style={styles.removeBtn}
           >
             <FontAwesome name="remove" size={20} />
           </AppButton>

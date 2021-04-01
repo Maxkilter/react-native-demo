@@ -5,14 +5,12 @@ import { MainScreen } from "./screens/MainScreen";
 import { TodoScreen } from "./screens/TodoScreen";
 import { THEME } from "./screens/theme";
 import { ScreenContext } from "./context/screen/screenContext";
-import { TodoContext } from "./context/todo/todoContext";
 
 export const MainLayout = () => {
   // const [selectedTodo, setSelectedTodo] = useState(null);
-  const { todo, changeScreen } = useContext(ScreenContext);
+  const { todo } = useContext(ScreenContext);
 
   //   const [todos, setTodos] = useState([]);
-  const { todos, updateTodo, addTodo, removeTodo } = useContext(TodoContext);
 
   //   const addTodo = (title) => {
   //     const newTodo = {
@@ -59,21 +57,7 @@ export const MainLayout = () => {
     <View>
       <Navbar title="Medallia" />
       <View style={styles.container}>
-        {!todo?.id ? (
-          <MainScreen
-            addTodo={addTodo}
-            removeTodo={removeTodo}
-            todos={todos}
-            selectTodo={changeScreen}
-          />
-        ) : (
-          <TodoScreen
-            goBack={changeScreen}
-            todo={todo}
-            removeTodo={removeTodo}
-            onSave={updateTodo}
-          />
-        )}
+        {todo?.id ? <TodoScreen /> : <MainScreen />}
       </View>
     </View>
   );

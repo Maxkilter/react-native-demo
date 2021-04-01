@@ -4,7 +4,7 @@ import { TodoContext } from "./todoContext";
 import { todoReducer } from "./todoReducer";
 
 const initialState = {
-  todos: [{ id: 33, title: "Tada-dada" }],
+  todos: [{ id: 33, title: "Medallia onboarding meeting" }],
 };
 
 export const TodoState = ({ children }) => {
