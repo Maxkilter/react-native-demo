@@ -37,8 +37,8 @@ export const TodoScreen = () => {
 
   const modalToggle = () => setIsModalVisible(!isModalVisible);
 
-  const saveHandler = (title) => {
-    updateTodo(todo.id, title);
+  const saveHandler = async (title) => {
+    await updateTodo(todo.id, title);
     modalToggle();
   };
 

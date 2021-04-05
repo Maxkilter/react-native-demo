@@ -54,7 +54,7 @@ export const MainLayout = () => {
   //   };
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <Navbar title="Medallia" />
       <View style={styles.container}>
         {todo?.id ? <TodoScreen /> : <MainScreen />}
@@ -67,5 +67,9 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
     paddingHorizontal: THEME.PADDING_HORIGONTAL,
+    flex: 1,
+  },
+  wrapper: {
+    flex: 1,
   },
 });
